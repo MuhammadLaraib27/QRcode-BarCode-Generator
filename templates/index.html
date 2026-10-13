@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR & Barcode Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>QR &amp; Barcode Generator</h1>
+
+        <!-- STEP 1: Type choice -->
+        <div id="step1" class="step">
+            <h2>Kya generate karna hai?</h2>
+            <div class="choice-buttons">
+                <button class="big-btn" onclick="chooseType('qr')">
+                    <span class="icon">▦</span>
+                    QR Code
+                </button>
+                <button class="big-btn" onclick="chooseType('barcode')">
+                    <span class="icon">▮▯▮</span>
+                    Barcode
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 2a: QR form -->
+        <div id="step-qr" class="step hidden">
+            <h2>QR Code</h2>
+
+            <label>Link (zaroori hai)</label>
+            <input type="url" id="qr-link" placeholder="https://example.com">
+
+            <label>Output Format</label>
+            <select id="qr-format">
+                <option value="png">PNG</option>
+                <option value="svg">SVG</option>
+            </select>
+
+            <div class="actions">
+                <button onclick="generateQR()">Generate</button>
+                <button class="secondary" onclick="goHome()">Back</button>
+            </div>
+        </div>
+
+        <!-- STEP 2b: Barcode form -->
+        <div id="step-barcode" class="step hidden">
+            <h2>Barcode</h2>
+
+            <label>Barcode Format</label>
+            <select id="bc-format">
+                <option value="code128">Code 128 (default)</option>
+                <option value="code39">Code 39</option>
+                <option value="ean13">EAN-13</option>
+                <option value="ean8">EAN-8</option>
+                <option value="upca">UPC-A</option>
+                <option value="isbn13">ISBN-13</option>
+                <option value="itf">ITF</option>
+            </select>
+
+            <label>Input Method</label>
+            <div class="radios">
+                <label><input type="radio" name="bc-mode" value="manual" checked> Khud likhun</label>
+                <label><input type="radio" name="bc-mode" value="auto"> Auto-generate</label>
+            </div>
+
+            <input type="text" id="bc-text" placeholder="Code yahan likhein">
+
+            <label>Output Format</label>
+            <select id="bc-out-format">
+                <option value="png">PNG</option>
+                <option value="svg">SVG</option>
+            </select>
+
+            <div class="actions">
+                <button onclick="generateBarcode()">Generate</button>
+                <button class="secondary" onclick="goHome()">Back</button>
+            </div>
+        </div>
+
+        <!-- STEP 3: Result -->
+        <div id="step-result" class="step hidden">
+            <h2>Aapka Code Ready Hai</h2>
+            <div id="preview"></div>
+            <div class="actions">
+                <button onclick="downloadImage()">Download</button>
+                <button class="secondary" onclick="goHome()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
